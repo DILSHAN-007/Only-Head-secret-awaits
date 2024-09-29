@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Join Support</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      user-select: none;
+      color: white;
+      overflow-y: auto; /* Enable vertical scrolling */
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+      font-family: serif;
+    }
+
+    h5 {
+      text-align: center;
+      font-size: 22px;
+      margin-top: 20px;
+    }
+
+    p {
+      text-align: justify;
+      width: 90%;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .qr-container {
+      align-items: center;
+      justify-content: space-between;
+      margin: 20px;
+      width: 90%;
+    }
+
+    .qr-container img {
+      position: relative;
+      bottom: 0px;
+      left: 130px;
+      margin-right: 20px;
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      border: 2px solid white;
+    }
+
+    /* Flexbox container for input and button */
+    .input-container {
+      display: flex;
+      justify-content: center; /* Center align the items */
+      align-items: center; /* Vertically center the items */
+      margin: 20px auto;
+    }
+
+    /* Styles for the input field */
+    input[type="text"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px 0 0 5px; /* Rounded left corners */
+      background-color: #333;
+      color: white;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      width: 280px; /* Adjust width as needed */
+      max-width: 500px; /* Max width for larger screens */
+      margin-right: -2px; /* Prevent double border effect */
+    }
+
+    /* Styles for the copy button */
+    .copy-btn {
+      background-color: #ffcc00;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 0 5px 5px 0; /* Rounded right corners */
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      cursor: pointer; /* Change cursor to pointer */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .copy-btn:hover {
+      background-color: #e6b800;
+    }
+
+    .link-box {
+      display: block;
+      position: relative;
+      bottom: 140px;
+      left: 180px;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #cccccc;
+    }
+
+    /* Custom alert styles */
+    .alert {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #000000E6;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      color: white;
+    }
+
+    #closeAlert {
+      background-color: #DBDBDB;
+      color: black;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
+
+    #closeAlert:hover {
+      background-color: #45a049;
+    }
+
+    mark {
+      background-color: #ffcc00;
+    }
+    .QRcode {
+      width:200px;
+      height: 200px;
+      display: flex;
+      justify-content: center; /* Center align the items */
+      align-items: center; /* Vertically center the items */
+      margin: 20px auto;
+    }
+    .alert {
+  display: none; /* Initially hidden */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #000000E6;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px 80px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  color: white;
+  text-align: center;
+}
+
+#closeAlert {
+  background-color: #DBDBDB; 
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+#closeAlert:hover {
+  background-color: #45a049;
+}
+  </style>
+</head>
+
+<body>
+  <h5>YOUR NAME WILL BE IMMORTALIZED IN THE GAME</h5>
+  <p>Thank you for being a cherished part of our game’s journey! Your support, whether big or small, is crucial in keeping this experience ad-free and funding exciting new features. <mark>As a heartfelt gesture of appreciation, every donor will receive a special shoutout in our next update—your name will shine in the game,</mark> celebrating your incredible support!
+    <br><br>
+    Join our community of supporters and be recognized for your contribution! <mark>Don't miss out on this opportunity to leave your mark</mark> and help us grow. Donate today and let’s make this game even better together!
+  </p>
+  <div class="qrContainer">
+    <img src="QR.jpg" alt="QR.jpg" class="QRcode">
+  </div>
+  <div class="alert" id="customAlert">
+  <p>copied!</p>
+  <button id="closeAlert" onclick="close()">Close</button>
+</div>
+  <div class="input-container">
+    <input type="text" value="http://buymeacoffee.com/SZAD" id="myLink" readonly>
+    <button class="copy-btn" onclick="copyLink()">Copy Link</button>
+  </div>
+</body>
+<script>
+  function copyLink() {
+    var copyText = document.getElementById("myLink");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    document.getElementById("customAlert").style.display = "block";
+  }
+
+
+// Function to close the custom alert
+document.getElementById("closeAlert").onclick = function() {
+  document.getElementById("customAlert").style.display = "none";
+};
+
+// Example usage to show the alert
+showAlert();
+</script>
+</html>

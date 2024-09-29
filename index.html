@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+  <title></title>
+</head>
+<style>
+  body {
+  background-color: black;
+ user-select: none;
+ font-family: serif;
+  }
+  .area{
+   position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('main.jpg');
+      background-size:cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+     #splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('splash.png');
+      background-size:cover;
+      color: white;
+      text-align: center;
+      font-size: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+  #play {
+    font-family: serif;
+    width:70px;
+    font-weight:bold;
+    height:30px;
+    font-size:27px;
+    position: fixed;
+    top:30%;
+    left:5%;
+    padding:0px 20px;
+    color:white;
+    background-color: transparent;
+    border:none;
+    transition:transform 0.1s;
+  }
+  #play:active {
+   transform: scale(1.2);
+  }
+  #restart {
+    font-family: serif;
+    width:70px;
+    font-weight:bold;
+    height:30px;
+    font-size:27px;
+    position: fixed;
+    top:50%;
+    left:5%;
+    padding:0px 20px;
+    color:white;
+    background-color: transparent;
+    border:none;
+    transition:transform 0.1s;
+  }
+  #restart:active {
+   transform: scale(1.2);
+  }
+   #support {
+    font-family: serif;
+    width:230px;
+    height:20px;
+    font-size:27px;
+    position: fixed;
+    top:70%;
+    left:5%;
+    padding:0px 20px;
+    color:white;
+    background-color: transparent;
+    border:none;
+    transition:transform 0.1s;
+  }
+  #support:active {
+   transform: scale(1.2);
+  }
+#res {
+  display: none;
+  position:fixed;
+  top:25%;
+  left:36%;
+  width:250px;
+  height:150px;
+  border:2px solid white;
+  background-color: black;
+  border-radius: 3px;
+}
+.p {
+  margin: 15px;
+  text-align: center;
+  color: white ;
+  font-size: 25px;
+}
+#no {
+  position: absolute;
+  bottom: 30px;
+  left:40px;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 2px;
+  padding: 5px 10px;
+}
+#no:active {
+  border:none;
+}
+#yes {
+  position: absolute;
+  bottom: 30px;
+  right:40px;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 2px;
+  padding: 5px 10px;
+}
+#yes:active {
+  border:none;
+}
+.donor {
+  position: fixed;
+  top:30%;
+  right:8%;
+  width:200px;
+  height:120px;
+  border:1px solid white;
+  background-color: #000000CF;
+  display: block;
+}
+#HDonor {
+  font-weight: bold;
+  text-align: center;
+  color:black;
+  background-color: white;
+  padding: 0.1px 18.4px;
+}
+#PDonor {
+  text-align: justify;
+  margin: 10px;
+  color:white;
+  font-size: 12px;
+}
+.presents {
+  margin:2px;
+  position:fixed;
+  top:20px;
+  left:37%;
+}
+.Name {
+  margin:20px;
+  position:fixed;
+  top:40px;
+  left:65px;
+  letter-spacing: 10px;
+  font-size: 80px;
+}
+.owner {
+  margin: 2px;
+  position: fixed;
+  bottom: 120px;
+  right:125px;
+  font-size: 10px;
+}
+.continue {
+  margin: 2px;
+  position: fixed;
+  bottom: 40px;
+  left:39%;
+  font-size: 15px;
+}
+h {
+  font-family: cursive;
+}
+</style>
+<body>
+  <div id="splash" onclick="splash()">
+    
+    <h5 class="presents">S-ZAD <h>Presents</h></h5>
+    
+    <h1 class="Name">ONLY HEAD</h1>
+    <br>
+    <h5 class="owner">Made By NAHSLID</h5>
+    <br>
+    <P class="continue">Tap To Continue...</P>
+  </div>
+  
+<div class="area" id="area">
+  <button id="play" onclick="playWork()">PLAY</button>
+  <button id="restart" onclick="restartWork()">RESTART</button></button>
+  <button id="support" onmouseup="support()">JOIN SUPPORT</button>
+</div>
+<div id="res"><p class="p">Are You Sure?</p>
+<button id="no" onclick="no()">NO</button>
+<button id="yes" onclick="yes()">YES</button>
+</div>
+<div class="donor" id="donor" onclick="donor()">
+  <center><h id="HDonor">Grateful Supporters</h></center>
+  <p id="PDonor">
+    Take the Lead as Our First Supporter !
+    <br><br>
+    Supporter names will be revealed in the next update on October 5, 2024.
+  </p>
+</div>
+</body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if the splash screen has been shown in this session
+    if (sessionStorage.getItem('splashShown') === 'true') {
+      // Splash screen was already shown, so skip it
+      document.getElementById('splash').style.display = 'none';
+      document.getElementById('area').style.display = 'block';
+    } else {
+      // Show the splash screen as this is the first load in this session
+      document.getElementById('splash').style.display = 'block';
+      document.getElementById('area').style.display = 'none';
+    }
+  });
+
+  function splash() {
+    document.getElementById('splash').style.display = 'none';
+    document.getElementById('area').style.display = 'block'; // Show main area
+
+    // Mark splash screen as shown for this session
+    sessionStorage.setItem('splashShown', 'true');
+  }
+  
+  function playWork(){
+    location.href ='game.html';
+  }
+  
+  function restartWork() {
+    document.getElementById('res').style.display ="block";
+    document.getElementById('donor').style.display ="none";
+  }
+  function support() {
+    location.href ='support.html';
+  }
+  function no() {
+    document.getElementById('res').style.display ="none";
+    document.getElementById('donor').style.display ="block";
+  }
+ function yes() {
+   localStorage.clear();
+   location.href ='game.html';
+ }
+ function donor() {
+  location.href ="donor.html";
+ }
+  
+</script>
+</html>
